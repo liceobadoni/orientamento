@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liceo Badoni</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            badoni: {
+              dark: '#0B132B',
+              navy: '#1C2541',
+              accent: '#00F0FF',
+              blue: '#3A506B',
+              light: '#F8FAFC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-badoni-dark text-slate-100 min-h-screen font-sans flex flex-col items-center">
+
+  <!-- Form Nascosto + Iframe Target per invio a Google Form senza CORS issue -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  <form id="gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdYufVJ1qOjs0Cm62kvNssmnWfZB3NjHw9WmLrt_YE1JJ4Ayw/formResponse" method="POST" target="hidden_iframe" class="hidden">
+    <input type="text" name="entry.944306534" id="field_quiz">
+    <input type="text" name="entry.1090735610" id="field_feedback">
+  </form>
+
+  <!-- Header con Logo -->
+  <header class="w-full max-w-md bg-badoni-navy/90 backdrop-blur border-b border-badoni-accent/30 p-4 sticky top-0 z-50 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <img src="86352.png" alt="IIS Badoni Logo" class="w-14 h-14 object-contain" onerror="this.src='https://via.placeholder.com/48?text=BADONI'">
+      <div>
+        <h1 class="font-bold text-lg text-white leading-tight">LICEO BADONI</h1>
+        <p class="text-xs text-badoni-accent font-medium">Guida Open Day</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full max-w-md p-4 space-y-6 pb-12">
+
+    <!-- Sezione Scarica Piantina (Anteprima cliccabile) -->
+    <section class="bg-badoni-navy/60 border border-badoni-accent/20 rounded-2xl p-5 text-center shadow-lg">
+      <div class="w-12 h-12 bg-badoni-accent/10 rounded-full flex items-center justify-center mx-auto mb-3 text-badoni-accent">
+        <i class="fa-solid fa-map-location-dot text-2xl"></i>
+      </div>
+      <h2 class="text-xl font-bold text-white mb-2">Piantina della Scuola</h2>
+      <p class="text-slate-300 text-sm mb-4">Tocca l'immagine per ingrandirla o scarica il PDF.</p>
+      
+      <!-- Anteprima Piantina -->
+      <div class="mb-4 overflow-hidden rounded-xl border border-badoni-accent/30 cursor-pointer hover:border-badoni-accent transition-colors" onclick="openMapModal()">
+        <img src="pianteopenday.jpg" alt="Anteprima Piantina" class="w-full h-auto object-cover" onerror="this.src='https://via.placeholder.com/600x400?text=Anteprima+Piantina'">
+        <div class="bg-badoni-navy py-2 text-xs text-badoni-accent flex justify-center items-center space-x-2">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          <span>Tocca per ingrandire</span>
+        </div>
+      </div>
+
+      <a href="pianteopendaypdf.pdf" target="_blank" class="inline-flex items-center justify-center space-x-2 bg-badoni-accent text-badoni-dark font-bold px-6 py-3 rounded-xl hover:bg-cyan-300 transition-all w-full shadow-md shadow-cyan-500/20">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span>Scarica Piantina PDF</span>
+      </a>
+    </section>
+
+    <!-- Quiz di Orientamento -->
+    <section class="bg-badoni-navy/60 border border-badoni-accent/20 rounded-2xl p-5 shadow-lg">
+      <div class="text-center mb-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-badoni-accent bg-badoni-accent/10 px-3 py-1 rounded-full">Test Rapido</span>
+        <h2 class="text-xl font-bold text-white mt-2">Qual è l'indirizzo perfetto per te?</h2>
+        <p class="text-slate-400 text-xs mt-1">Rispondi a 4 brevi domande per scoprire la tua strada al Badoni!</p>
+      </div>
+
+      <div id="quiz-container">
+        <!-- Domanda 1 -->
+        <div class="quiz-step block space-y-3" data-step="1">
+          <p class="font-semibold text-slate-200 text-sm">1. Cosa ti appassiona di più fare nel tempo libero?</p>
+          <div class="space-y-2">
+            <button onclick="answer(1, 'info')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">A. Scrivere codice, creare app o configurare reti</button>
+            <button onclick="answer(1, 'mec')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">B. Smontare ingranaggi, capire come funzionano i motori e la meccanica</button>
+            <button onclick="answer(1, 'ele')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">C. Progettare circuiti elettronici, microcontrollori e robotica</button>
+            <button onclick="answer(1, 'liceo')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">D. Fare esperimenti di fisica e chimica e studiare le scienze</button>
+            <button onclick="answer(1, 'log')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">E. Organizzare spedizioni, flussi di merci e catene di approvvigionamento</button>
+          </div>
+        </div>
+
+        <!-- Domanda 2 -->
+        <div class="quiz-step hidden space-y-3" data-step="2">
+          <p class="font-semibold text-slate-200 text-sm">2. Quale progetto ti stimolerebbe di più?</p>
+          <div class="space-y-2">
+            <button onclick="answer(2, 'info')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">A. Sviluppare un sistema d'intelligenza artificiale o un software di cybersecurity</button>
+            <button onclick="answer(2, 'mec')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">B. Disegnare in 3D e realizzare componenti meccanici avanzati</button>
+            <button onclick="answer(2, 'ele')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">C. Programmare un braccio robotico automatizzato per l'industria</button>
+            <button onclick="answer(2, 'liceo')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">D. Analizzare dati scientifici e modelli matematici per il futuro</button>
+            <button onclick="answer(2, 'log')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">E. Gestire la logistica di una grande azienda con magazzini intelligenti</button>
+          </div>
+        </div>
+
+        <!-- Domanda 3 -->
+        <div class="quiz-step hidden space-y-3" data-step="3">
+          <p class="font-semibold text-slate-200 text-sm">3. Come ti vedi dopo il diploma?</p>
+          <div class="space-y-2">
+            <button onclick="answer(3, 'info')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">A. Programmatore, Sistemista o Data Analyst</button>
+            <button onclick="answer(3, 'mec')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">B. Progettista CAD, Tecnico Meccatronico o Progettista di Impianti</button>
+            <button onclick="answer(3, 'ele')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">C. Specialista in Automazione, Robotica ed Elettronica</button>
+            <button onclick="answer(3, 'liceo')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">D. Pronto per qualsiasi facoltà universitaria scientifica/STEM</button>
+            <button onclick="answer(3, 'log')" class="w-full text-left p-3 rounded-xl bg-slate-800/80 hover:bg-badoni-accent/20 border border-slate-700 text-xs transition">E. Supply Chain Manager o Responsabile Logistica globale</button>
+          </div>
+        </div>
+
+        <!-- Risultato -->
+        <div id="quiz-result" class="hidden text-center space-y-4 py-4">
+          <div class="w-16 h-16 bg-badoni-accent/20 rounded-full flex items-center justify-center mx-auto text-badoni-accent text-3xl">
+            <i id="res-icon" class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h3 id="res-title" class="text-xl font-bold text-white"></h3>
+          <p id="res-desc" class="text-slate-300 text-xs leading-relaxed"></p>
+          <button onclick="resetQuiz()" class="text-xs text-badoni-accent underline mt-2">Rifai il quiz</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback finale con Emoji -->
+    <section class="bg-badoni-navy/60 border border-badoni-accent/20 rounded-2xl p-5 text-center shadow-lg">
+      <h3 class="text-sm font-semibold text-slate-200 mb-3">Ti sta piacendo l'Open Day?</h3>
+      <div id="feedback-buttons" class="flex justify-center items-center space-x-6 text-3xl">
+        <button onclick="sendFeedback('love')" class="hover:scale-125 transition-transform">❤️</button>
+        <button onclick="sendFeedback('up')" class="hover:scale-125 transition-transform">👍</button>
+        <button onclick="sendFeedback('down')" class="hover:scale-125 transition-transform">👎</button>
+      </div>
+      <p id="feedback-msg" class="text-xs text-badoni-accent mt-3 hidden">Grazie per il tuo riscontro!</p>
+    </section>
+
+  </main>
+
+  <!-- Modale Piantina Ingrandita -->
+  <div id="map-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex-col items-center justify-center p-4 backdrop-blur-sm" onclick="closeMapModal()">
+    <div class="w-full max-w-2xl flex justify-end mb-2">
+      <button class="text-white hover:text-badoni-accent text-4xl">&times;</button>
+    </div>
+    <img src="pianteopenday.jpg" alt="Piantina Ingrandita" class="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" onerror="this.src='https://via.placeholder.com/600x400?text=Anteprima+Piantina'" onclick="event.stopPropagation()">
+  </div>
+
+<script>
+    // Incolla qui l'URL della Web App di Apps Script (deve terminare con /exec)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPE1O9VAQa_z_WlCoqiOIIwaL4XN7Sq1NAHMD68FsXxKGHfC5TwXzYlVazFkibxg/exec?quiz=TestInformatica";
+
+    const scores = { info: 0, mec: 0, ele: 0, liceo: 0, log: 0 };
+
+    function answer(step, key) {
+      scores[key]++;
+      const current = document.querySelector(`[data-step="${step}"]`);
+      const next = document.querySelector(`[data-step="${step + 1}"]`);
+
+      if (current) current.classList.add('hidden');
+
+      if (next) {
+        next.classList.remove('hidden');
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      const best = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      const resContainer = document.getElementById('quiz-result');
+      const title = document.getElementById('res-title');
+      const desc = document.getElementById('res-desc');
+      const icon = document.getElementById('res-icon');
+
+      const resultsData = {
+        info: { name: "Informatica e Telecomunicazioni", desc: "Il tuo profilo è orientato al codice, al software e alle reti. Visita il laboratorio di Informatica e l'Aula di Presentazione riservata!", icon: "fa-code" },
+        mec: { name: "Meccanica, Meccatronica ed Energia", desc: "Hai una forte propensione per la progettazione 3D e i sistemi meccanici. Passa dai laboratori di Meccanica!", icon: "fa-gears" },
+        ele: { name: "Elettronica ed Elettrotecnica", desc: "Il tuo forte sono i circuiti, l'automazione e i sistemi di controllo robotizzati. Visita i laboratori dedicati!", icon: "fa-bolt" },
+        liceo: { name: "Liceo Scientifico - Scienze Applicate", desc: "Hai un'attitudine teorico-scientifica bilanciata tra matematica, fisica e informatica. Scopri l'aula del Liceo!", icon: "fa-atom" },
+        log: { name: "Logistica e Trasporti", desc: "Ti affascina l'organizzazione dei flussi di merci e la gestione della supply chain globale!", icon: "fa-truck-fast" }
+      };
+
+      title.innerText = resultsData[best].name;
+      desc.innerText = resultsData[best].desc;
+      icon.className = `fa-solid ${resultsData[best].icon}`;
+      resContainer.classList.remove('hidden');
+
+      // Invio dato del quiz a Google Fogli
+      if (SCRIPT_URL && SCRIPT_URL !== "INCOLLA_QUI_URL_DELLA_WEB_APP") {
+        fetch(SCRIPT_URL + "?quiz=" + encodeURIComponent(resultsData[best].name), { mode: 'no-cors' });
+      }
+    }
+
+    function sendFeedback(type) {
+      document.getElementById('feedback-buttons').classList.add('opacity-40', 'pointer-events-none');
+      document.getElementById('feedback-msg').classList.remove('hidden');
+
+      const emojiMap = {
+        love: "❤️ Cuore",
+        up: "👍 Pollice Su",
+        down: "👎 Pollice Giù"
+      };
+
+      // Invio feedback a Google Fogli
+      if (SCRIPT_URL && SCRIPT_URL !== "INCOLLA_QUI_URL_DELLA_WEB_APP") {
+        fetch(SCRIPT_URL + "?feedback=" + encodeURIComponent(emojiMap[type]), { mode: 'no-cors' });
+      }
+    }
+
+    function resetQuiz() {
+      Object.keys(scores).forEach(k => scores[k] = 0);
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.querySelectorAll('.quiz-step').forEach((el, index) => {
+        if (index === 0) el.classList.remove('hidden');
+        else el.classList.add('hidden');
+      });
+    }
+
+    function openMapModal() {
+      document.getElementById('map-modal').classList.remove('hidden');
+      document.getElementById('map-modal').classList.add('flex');
+    }
+
+    function closeMapModal() {
+      document.getElementById('map-modal').classList.add('hidden');
+      document.getElementById('map-modal').classList.remove('flex');
+    }
+  </script>
+</body>
+</html>
