@@ -134,13 +134,17 @@
             <!-- MENU DESKTOP E PULSANTI -->
             <div class="flex items-center gap-4">
                 <!-- MENU DESKTOP (Nascosto su Mobile) -->
-                <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm mr-4">
+                <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-medium text-slate-600 text-sm mr-2">
                     <a href="#indirizzi" class="hover:text-badoni-secondary transition-colors">Corsi</a>
                     <a href="#openday" class="hover:text-badoni-secondary transition-colors">Prenotazioni attività</a>
                     <a href="#quiz" class="hover:text-badoni-secondary transition-colors">Quiz</a>
+                    <!-- LINK WHATSAPP DESKTOP -->
+                    <a href="https://whatsapp.com/channel/0029Vb9YuH4KwqSat4VOj729" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-[#25D366] transition-colors">
+                        <i class="fa-brands fa-whatsapp text-[#25D366] text-lg"></i> Canale WhatsApp
+                    </a>
                 </nav>
 
-                <a href="#openday" class="hidden sm:inline-flex items-center gap-2 bg-badoni-secondary text-badoni-primary hover:brightness-110 px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all hover:scale-105">
+                <a href="#openday" class="hidden sm:inline-flex items-center gap-2 bg-badoni-secondary text-badoni-primary hover:brightness-110 px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap">
                     <i class="fa-solid fa-calendar-check"></i> Iscriviti alle attività
                 </a>
 
@@ -163,14 +167,13 @@
                 <a href="#quiz" onclick="closeMobileMenu()" class="flex items-center gap-3 py-2 hover:text-badoni-primary border-b border-slate-100">
                     <i class="fa-solid fa-compass text-badoni-secondary w-5"></i> Quiz
                 </a>
-                <!-- LINK WHATSAPP -->
-                <a href="https://whatsapp.com/channel/0029Vb9YuH4KwqSat4VOj729" target="_blank" onclick="closeMobileMenu()" class="flex items-center gap-3 py-2 text-[#25D366] hover:brightness-110 font-bold mt-1">
+                <!-- LINK WHATSAPP MOBILE -->
+                <a href="https://whatsapp.com/channel/0029Vb9YuH4KwqSat4VOj729" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="flex items-center gap-3 py-2 text-[#25D366] hover:brightness-110 font-bold mt-1">
                     <i class="fa-brands fa-whatsapp text-2xl w-5"></i> Canale WhatsApp
                 </a>
             </nav>
         </div>
     </header>
-
     <!-- HERO SECTION -->
     <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-badoni-primary text-white">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
