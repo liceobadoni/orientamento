@@ -1,0 +1,13 @@
+﻿Crea un videogioco completo in un unico file HTML con CSS e
+JavaScript integrati, ottimizzato sia per PC che per smartphone (includi il
+meta tag viewport e adatta il Canvas a schermo intero senza barre di
+scorrimento). Il gioco deve essere un arcade in cui devo schivare degli
+ostacoli che cadono dall'alto (tema: [spazio / calcio / zombie / a scelta..]). Il
+giocatore si muove a destra e sinistra con le frecce della tastiera E con due
+grandi pulsanti touch (Sinistra / Destra) in basso sullo schermo per chi gioca
+da telefono. Deve avere una schermata di Game Over con un pulsante 'Rigioca' e una grafica colorata su Canvas. All'inizio del tag <script>, dichiara
+obbligatoriamente una sezione di configurazione con
+queste esatte variabili in italiano da usare nel resto del codice:
+velocitaGiocatore, velocitaOstacoli, frequenzaOstacoli, viteIniziali,
+coloreGiocatore, coloreOstacoli, larghezzaGiocatore. Segnalami adeguatamente le variabili indicate con un commento dal titolo "Sezione di Configurazione", separandole con due ritorni a capo dal resto del codice e commentandole, così da poterle modificare facilmente.
+Voglio solo il codice senza anteprima.
