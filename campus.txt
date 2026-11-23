@@ -9,5 +9,7 @@ da telefono. Deve avere una schermata di Game Over con un pulsante 'Rigioca' e u
 obbligatoriamente una sezione di configurazione con
 queste esatte variabili in italiano da usare nel resto del codice:
 velocitaGiocatore, velocitaOstacoli, frequenzaOstacoli, viteIniziali,
-coloreGiocatore, coloreOstacoli, larghezzaGiocatore. Segnalami adeguatamente le variabili indicate con un commento dal titolo "Sezione di Configurazione", separandole con due ritorni a capo dal resto del codice e commentandole, così da poterle modificare facilmente.
+coloreGiocatore, coloreOstacoli, larghezzaGiocatore. Segnalami adeguatamente
+le variabili indicate con un commento dal titolo "Sezione di Configurazione",
+separandole con due ritorni a capo dal resto del codice e commentandole, così da poterle modificare facilmente.
 Voglio solo il codice senza anteprima.
